@@ -1,0 +1,87 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class TodoListManager {
+
+    private ArrayList<String> tasks; // ArrayList to store tasks
+
+    // Constructor to initialize the task list
+    public TodoListManager() {
+        tasks = new ArrayList<>();
+    }
+
+    // Method to display all tasks
+    public void showTasks() {
+        if (tasks.isEmpty()) {
+            System.out.println("Your task list is empty.");
+        } else {
+            System.out.println("\n--- Task List ---");
+            for (int i = 0; i < tasks.size(); i++) {
+                System.out.println((i + 1) + ". " + tasks.get(i));
+            }
+            System.out.println("-----------------");
+        }
+    }
+
+    // Method to add a task
+    public void addTask(String task) {
+        tasks.add(task);
+        System.out.println("Task '" + task + "' added successfully.");
+    }
+
+    // Method to remove a task by index
+    public void removeTask(int taskIndex) {
+        if (taskIndex >= 1 && taskIndex <= tasks.size()) {
+            String removedTask = tasks.remove(taskIndex - 1);
+            System.out.println("Task '" + removedTask + "' removed successfully.");
+        } else {
+            System.out.println("Invalid task number. Please try again.");
+        }
+    }
+
+    // Method to display the menu
+    public void displayMenu() {
+        System.out.println("\n--- To-Do List Manager ---");
+        System.out.println("1. View Tasks");
+        System.out.println("2. Add Task");
+        System.out.println("3. Remove Task");
+        System.out.println("4. Exit");
+        System.out.println("---------------------------");
+    }
+
+    // Main method to run the program
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        TodoListManager todoManager = new TodoListManager();
+
+        while (true) {
+            todoManager.displayMenu();
+            System.out.print("Please select an option (1-4): ");
+            int choice = scanner.nextInt();
+            scanner.nextLine(); // Consume newline character
+
+            switch (choice) {
+                case 1:
+                    todoManager.showTasks();
+                    break;
+                case 2:
+                    System.out.print("Enter the task you want to add: ");
+                    String taskToAdd = scanner.nextLine();
+                    todoManager.addTask(taskToAdd);
+                    break;
+                case 3:
+                    todoManager.showTasks();
+                    System.out.print("Enter the task number you want to remove: ");
+                    int taskNumber = scanner.nextInt();
+                    todoManager.removeTask(taskNumber);
+                    break;
+                case 4:
+                    System.out.println("Goodbye! Have a great day!");
+                    scanner.close();
+                    return;  // Exit the program
+                default:
+                    System.out.println("Invalid option. Please select again.");
+            }
+        }
+    }
+}
