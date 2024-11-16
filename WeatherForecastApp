@@ -1,0 +1,43 @@
+package Task1;
+
+
+	import java.util.Random;
+	import java.util.Scanner;
+
+	public class WeatherForecastApp {
+
+	    // Method to simulate weather forecast
+	    public static String generateWeatherForecast() {
+	        // Define weather types
+	        String[] weatherTypes = {"Sunny", "Rainy", "Cloudy", "Windy", "Stormy"};
+	        
+	        // Generate a random index to choose a weather type
+	        Random random = new Random();
+	        int randomIndex = random.nextInt(weatherTypes.length); // Get a random index
+	        
+	        // Return the weather forecast
+	        return weatherTypes[randomIndex];
+	    }
+
+	    // Method to display the forecast for a city
+	    public static void displayForecast(String city) {
+	        // Generate a random weather forecast
+	        String weather = generateWeatherForecast();
+	        
+	        // Display the weather forecast
+	        System.out.println("Weather forecast for " + city + ": " + weather);
+	    }
+
+	    public static void main(String[] args) {
+	        Scanner scanner = new Scanner(System.in);
+	        
+	        // Ask the user to input a city
+	        System.out.print("Enter a city name: ");
+	        String city = scanner.nextLine();
+	        
+	        // Display the weather forecast for the city
+	        displayForecast(city);
+	        
+	        scanner.close();
+	    }
+	}
